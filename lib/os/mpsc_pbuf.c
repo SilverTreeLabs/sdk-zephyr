@@ -202,7 +202,9 @@ void mpsc_pbuf_put_word(struct mpsc_pbuf_buffer *buffer,
 
 		if (cont && valid_drop) {
 			/* Notify about item being dropped. */
-			buffer->notify_drop(buffer, dropped_item);
+			if (buffer->notify_drop) {
+				buffer->notify_drop(buffer, dropped_item);
+			}
 		}
 	} while (cont);
 
@@ -264,7 +266,9 @@ union mpsc_pbuf_generic *mpsc_pbuf_alloc(struct mpsc_pbuf_buffer *buffer,
 
 		if (cont && dropped_item && valid_drop) {
 			/* Notify about item being dropped. */
-			buffer->notify_drop(buffer, dropped_item);
+			if (buffer->notify_drop) {
+				buffer->notify_drop(buffer, dropped_item);
+			}
 			dropped_item = NULL;
 		}
 	} while (cont);
@@ -335,7 +339,9 @@ void mpsc_pbuf_put_word_ext(struct mpsc_pbuf_buffer *buffer,
 
 		if (cont && dropped_item && valid_drop) {
 			/* Notify about item being dropped. */
-			buffer->notify_drop(buffer, dropped_item);
+			if (buffer->notify_drop) {
+				buffer->notify_drop(buffer, dropped_item);
+			}
 			dropped_item = NULL;
 		}
 	} while (cont);
@@ -378,7 +384,9 @@ void mpsc_pbuf_put_data(struct mpsc_pbuf_buffer *buffer, const uint32_t *data,
 
 		if (cont && dropped_item && valid_drop) {
 			/* Notify about item being dropped. */
-			buffer->notify_drop(buffer, dropped_item);
+			if (buffer->notify_drop) {
+				buffer->notify_drop(buffer, dropped_item);
+			}
 			dropped_item = NULL;
 		}
 	} while (cont);
