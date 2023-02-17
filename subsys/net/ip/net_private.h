@@ -27,7 +27,7 @@
 #ifdef CONFIG_NET_L2_WIFI_MGMT
 
 #include <zephyr/net/wifi_mgmt.h>
-#define NET_EVENT_INFO_MAX_SIZE sizeof(struct wifi_scan_result)
+#define NET_EVENT_INFO_MAX_SIZE sizeof(struct wifi_iface_status)
 
 #else
 

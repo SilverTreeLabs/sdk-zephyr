@@ -196,7 +196,7 @@ void wifi_mgmt_raise_iface_status_event(struct net_if *iface,
 		struct wifi_iface_status *iface_status)
 {
 	net_mgmt_event_notify_with_info(NET_EVENT_WIFI_IFACE_STATUS,
-					iface, &iface_status,
+					iface, iface_status,
 					sizeof(struct wifi_iface_status));
 }
 
