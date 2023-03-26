@@ -62,13 +62,13 @@ static uint32_t scan_result;
 
 static struct net_mgmt_event_callback wifi_shell_mgmt_cb;
 
-#define print(sh, level, fmt, ...)					\
-	do {								\
-		if (sh) {						\
-			shell_fprintf(sh, level, fmt, ##__VA_ARGS__); \
-		} else {						\
-			printk(fmt, ##__VA_ARGS__);			\
-		}							\
+#define print(sh, level, fmt, ...)                                                                 \
+	do {                                                                                       \
+		if (sh) {                                                                          \
+			printk(fmt, ##__VA_ARGS__);                                                \
+		} else {                                                                           \
+			printk(fmt, ##__VA_ARGS__);                                                \
+		}                                                                                  \
 	} while (false)
 
 static bool parse_number(const struct shell *sh, long *param, char *str, long min, long max)
