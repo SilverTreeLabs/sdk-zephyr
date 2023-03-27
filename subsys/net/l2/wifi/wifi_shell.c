@@ -49,13 +49,13 @@ static uint32_t scan_result;
 
 static struct net_mgmt_event_callback wifi_shell_mgmt_cb;
 
-#define print(sh, level, fmt, ...)					\
-	do {								\
-		if (sh) {						\
-			shell_fprintf(sh, level, fmt, ##__VA_ARGS__); \
-		} else {						\
-			printk(fmt, ##__VA_ARGS__);			\
-		}							\
+#define print(sh, level, fmt, ...)                                                                 \
+	do {                                                                                       \
+		if (sh) {                                                                          \
+			printk(fmt, ##__VA_ARGS__);                                                \
+		} else {                                                                           \
+			printk(fmt, ##__VA_ARGS__);                                                \
+		}                                                                                  \
 	} while (false)
 
 static void handle_wifi_scan_result(struct net_mgmt_event_callback *cb)
@@ -216,7 +216,7 @@ static int cmd_wifi_connect(const struct shell *sh, size_t argc,
 			    char *argv[])
 {
 	struct net_if *iface = net_if_get_default();
-	static struct wifi_connect_req_params cnx_params;
+	struct wifi_connect_req_params cnx_params;
 
 	if (__wifi_args_to_params(argc - 1, &argv[1], &cnx_params)) {
 		shell_help(sh);
