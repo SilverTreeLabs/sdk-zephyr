@@ -39,6 +39,11 @@ struct socket_dns_offload {
  */
 void socket_offload_dns_register(const struct socket_dns_offload *ops);
 
+/**
+ * @brief Deregister an offloaded socket DNS API interface.
+*/
+void socket_offload_dns_deregister( void );
+
 int socket_offload_getaddrinfo(const char *node, const char *service,
 			       const struct zsock_addrinfo *hints,
 			       struct zsock_addrinfo **res);

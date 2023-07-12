@@ -14,6 +14,11 @@ LOG_MODULE_REGISTER(net_socket_offload, CONFIG_NET_SOCKETS_LOG_LEVEL);
 
 const struct socket_dns_offload *dns_offload;
 
+void socket_offload_dns_deregister()
+{
+	dns_offload = NULL;
+}
+
 void socket_offload_dns_register(const struct socket_dns_offload *ops)
 {
 	__ASSERT_NO_MSG(ops);
