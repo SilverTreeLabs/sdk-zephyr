@@ -22,6 +22,7 @@ class CoverageTool:
         self.gcov_tool = None
         self.base_dir = None
         self.output_formats = None
+        self.merge_mode = None
 
     @staticmethod
     def factory(tool):
@@ -195,9 +196,11 @@ class Gcovr(CoverageTool):
 
         excludes = Gcovr._interleave_list("-e", self.ignores)
 
+        merge_mode = ["--merge-mode-functions", "separate"]
+
         # We want to remove tests/* and tests/ztest/test/* but save tests/ztest
         cmd = ["gcovr", "-r", self.base_dir, "--gcov-executable",
-               str(self.gcov_tool), "-e", "tests/*"] + excludes + ["--json",
+               str(self.gcov_tool), "-e", "tests/*"] + excludes  + ["--json",
                                                                    "-o",
                                                                    coveragefile,
                                                                    outdir]
@@ -231,7 +234,7 @@ class Gcovr(CoverageTool):
         }
         gcovr_options = self._flatten_list([report_options[r] for r in self.output_formats.split(',')])
 
-        return subprocess.call(["gcovr", "-r", self.base_dir] + gcovr_options + tracefiles,
+        return subprocess.call(["gcovr", "-r", self.base_dir] + gcovr_options + merge_mode + tracefiles ,
                                stdout=coveragelog)
 
 
